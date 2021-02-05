@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 using xUnitTutorial.Service;
 
@@ -29,6 +30,25 @@ namespace xUnitTutorial.unitTests.Service
             _sut.Add(num1);
             _sut.Add(num2);
             Assert.Equal(expected, _sut.Value);
+        }
+        
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void AddManyNumbersTheory(decimal expected, params decimal[] values)
+        {
+            foreach (var value in values)
+            {
+                _sut.Add(value);
+            }
+
+            Assert.Equal(expected, _sut.Value);
+        }
+
+        public static IEnumerable<object[]> TestData()
+        {
+            yield return new object[] {15, new decimal[] {10, 5}};
+            yield return new object[] {15, new decimal[] {5, 5, 5}};
+            yield return new object[] {-20, new decimal[] {-10, -30, 20}};
         }
         
     }
