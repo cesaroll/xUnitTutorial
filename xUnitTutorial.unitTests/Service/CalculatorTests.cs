@@ -12,7 +12,7 @@ namespace xUnitTutorial.unitTests.Service
             _sut = new Calculator();
         }
 
-        [Fact]
+        [Fact(Skip = "This test is replaced by the one below")]
         public void AddTwoNumbers()
         {
             _sut.Add(5);
