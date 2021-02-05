@@ -35,7 +35,7 @@ namespace xUnitTutorial.Service
         /// <returns></returns>
         public decimal Multiply(decimal value)
         {
-            if (value == 0 && _state == CalculatorState.Cleared)
+            if (Value == 0 && _state == CalculatorState.Cleared)
             {
                 _state = CalculatorState.Active;
                 return Value = value;
@@ -51,7 +51,7 @@ namespace xUnitTutorial.Service
         /// <returns></returns>
         public decimal Divide(decimal value)
         {
-            if (value == 0 && _state == CalculatorState.Cleared)
+            if (Value == 0 && _state == CalculatorState.Cleared)
             {
                 _state = CalculatorState.Active;
                 return Value = value;

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using xUnitTutorial.Service;
@@ -51,5 +52,33 @@ namespace xUnitTutorial.unitTests.Service
             yield return new object[] {-20, new decimal[] {-10, -30, 20}};
         }
         
+        [Theory]
+        [ClassData(typeof(DivisionTestData))]
+        public void DivideManyNumbersTheory(decimal expected, params decimal[] values)
+        {
+            foreach (var value in values)
+            {
+                _sut.Divide (value);
+            }
+
+            Assert.Equal(expected, _sut.Value);
+        }
+        
     }
+
+    public class DivisionTestData : IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            yield return new object[] {30, new decimal[] {60, 2}};
+            yield return new object[] {0, new decimal[] {0, 1}};
+            yield return new object[] {1, new decimal[] {5, 5}};
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+    
 }
